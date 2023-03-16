@@ -1,16 +1,19 @@
-# In the official alpine image, ffmpeg is compiled without "--enable-libfreetype" option,
-# so we will use jrottenberg's image.
+FROM python:3.9
 
-FROM jrottenberg/ffmpeg:4.2-alpine
+WORKDIR /app
 
-COPY scripts/entrypoint.sh /entrypoint.sh
-COPY requirements.txt /requirements.txt
+RUN apt-get update && apt-get upgrade -y
 
-RUN \
-    chmod +x /entrypoint.sh && \
-    apk add --update --no-cache python3 python3-dev cmd:pip3 build-base && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN apt-get install ffmpeg screen -y
 
-ENTRYPOINT ["/bin/sh"]
-CMD ["/entrypoint.sh"]
+RUN pip install --upgrade pip poetry
+
+ENV POETRY_VIRTUALENVS_IN_PROJECT true
+
+COPY telewater telewater
+
+COPY README.md LICENSE pyproject.toml poetry.lock entrypoint.py ./
+
+RUN poetry install
+
+CMD poetry run python -u entrypoint.py
