@@ -1,48 +1,35 @@
 {
-    "name": "watermark-telegram-bot",
-    "description": "this bot can add watermark to your photos",
-    "keywords": [
-        "telegram",
-        "watermark",
-        "bot"
-    ],
-    "repository": "https://github.com/F36/Telegram-Watermark-bot",
-    "env": {
-        "BOT_TOKEN": {
-            "description": "Telegram bot token. From Bot_Father"
-        },
-        "WATERMARK": {
-            "description": "Enter your watermark",
-            "value": "...watermark...",
-            "required": false
-        },
-        "FONT_SIZE": {
-            "description": "Font size",
-            "value": "15",
-            "required": false
-        },
-        "TRANSPARENCY": {
-            "description": "Font transparency",
-            "value": "0.75",
-            "required": false
-        },
-        "QUALITY": {
-            "description": "Image quality",
-            "value": "100",
-            "required": false
-        }
+  "name": "telewater",
+  "stack": "container",
+  "description": "A telegram bot that applies watermark on images, gifs, and videos.",
+  "keywords": ["telegram", "watermark", "bot"],
+  "website": "https://aahnik.dev",
+  "repository": "https://github.com/aahnik/telewater",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/1024px-Telegram_2019_Logo.svg.png",
+
+  "env": {
+    "API_ID": {
+      "description": "Put the API ID obtained from my.telegram.org",
+      "value": "",
+      "required": true
     },
-    "addons": [
-    ],
-    "buildpacks": [
-        {
-            "url": "heroku/python"
-        }
-    ],
-    "formation": {
-        "worker": {
-            "quantity": 1,
-            "size": "free"
-        }
+
+    "API_HASH": {
+      "description": "Put the API HASH obtained from my.telegram.org",
+      "value": "",
+      "required": true
+    },
+
+    "BOT_TOKEN": {
+      "description": "Create a new bot with BotFather and put token here",
+      "value": "",
+      "required": true
+    },
+
+    "BOT_USERNAME": {
+      "description": "Create a new bot with BotFather and put token here",
+      "value": "botusername",
+      "required": true
     }
+  }
 }
